@@ -1,0 +1,124 @@
+\documentclass[11pt]{article}
+
+% Prefix for numedquestion's
+\newcommand{\questiontype}{Question}
+
+
+% Use this if your "written" questions are all under one section
+% For example, if the homework handout has Section 5: Written Questions
+% and all questions are 5.1, 5.2, 5.3, etc. set this to 5
+% Use for 0 no prefix. Redefine as needed per-question.
+\newcommand{\writtensection}{0}
+
+\usepackage{amsmath, amsfonts, amsthm, amssymb}  % Some math symbols
+
+\usepackage{centernot}
+\usepackage{mathtools}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\section{Propositional Logic}
+\subsection{Syntax}
+
+Logical Statements are formed using propositional variables $\{P_1,...,P_n\}$ also called Boolean Variables, propositional symbols, atomic propositions, and atoms.
+\vspace{1em}
+
+Sentences are formed accoring to the following rules:
+
+\begin{itemize}
+    \item Every propositional variable is a sentence
+    \item If $\alpha$ and $\beta$ are sentences, then $\lnot \alpha, \alpha \land \beta, \text{and } \alpha \lor \beta$ are also sentences
+\end{itemize}
+
+These logical connectives define all logical statements, for example, $\alpha \implies \beta$ can be written as $\lnot \alpha \lor \beta$
+\vspace{1em}
+
+Positive and negative literals are represented by $P_i$ and $\lnot P_i$.
+\vspace{3em}
+
+\textbf{\Large{Propositional Knowledge Bases}}
+\vspace{1em}
+
+A \textbf{knowledge base} is a set of propositional sentences $\Delta  = \alpha_1,\alpha_2,...$. And represents the shorthand for the logical statement $\alpha_1 \land \alpha_2 ...$
+\vspace{1em}
+
+We define the set of propositional variables as $\Sigma = A,B,C...$ and we can define a knowledge base as follows
+$$\Delta_1 = \lnot A \lor B$$
+$$
+\Delta_2 = \begin{cases}
+\lnot A \lor B \implies C\\
+\lnot (\lnot A \lor B) \implies \lnot C
+\end{cases}
+$$
+A more complex knowledge base one can write involving the variables $\Sigma_3 = A,B,C,X,Y$:
+$$\Delta_3 = \begin{cases}
+    A \Rightarrow \lnot X\\
+    \lnot A \Rightarrow X\\
+    A \land B \Rightarrow Y\\
+    \lnot (A \land B) \Rightarrow \lnot Y\\
+    X \lor Y \Rightarrow C\\
+    \lnot (X \lor Y) \Rightarrow \lnot C
+    \end{cases}
+$$
+\vspace{1em}
+
+The choice of propositional variables is quite important, and must be made in the context of given application
+
+\subsection{Semantics}
+
+The semantics of propositional logic defines logical properties of such sentences, including consistency and validity, and logical relationships among sentences, including implication and equivalence. Examples include:
+\begin{itemize}
+\item $A \land \lnot A$ is inconsistent
+\item $A \lor \lnot A$ is valid
+\item $A \text{ and } A \Rightarrow B \text{ imply } B$
+\item $A \lor B$ is equivalent to $B \lor A$
+\end{itemize}
+
+\subsubsection{Truth at a world}
+
+A world $\omega$ is a function that assigns a value true/false to each propositional variable $P_i$. It represents a particular state of affairs in which the value of each propositional variable is known. The semantics of propositional logic is based on a simple definition which tells us whether a sentence $\alpha$ is true at a particular world $\omega$ written as $\omega \models P_i$
+\begin{itemize}
+\item $\omega \models P_i \text{ iff } \omega(P_i) = true$
+\item $\omega \models \lnot \alpha $ iff $\omega \not\models P_i$
+\item $\omega \models \alpha \lor \beta$ iff $\omega \models \alpha$ or $\omega \models \beta$
+\item $\omega \models \alpha \land \beta$ iff $\omega \models \alpha$ and $\omega \models \beta$
+\end{itemize}
+A world is called a truth assignment or an interpretaion
+
+\subsubsection{Logical Properties}
+
+We say $\alpha$ is consistent iff there is at least one world $\omega$ at which $\alpha$ is true, otherwise it is inconsistent. The propblem of deciding the satisfiability of a propositional sentence is the first problem proven to be NP complete.
+\vspace{1em}
+
+A set of $n$ propositional variables generally leads to a total of $2^n$ possible worlds.
+\vspace{1em}
+
+False is used to denote a sentence which is unsatisfiable. It is valid iff it is true at every world. An invalid sentence is simply one that is invalid is some world. A sentence is valid iff its negation is inconsistent.
+\vspace{1em}
+
+The symbol true is used to denote a sentence which is valid. It is common to write $\models \alpha$ in order to indicate that sentence $\alpha$ is valid.
+\vspace{1em}
+
+A sentence is complete iff it is true at exactly one world.
+
+\subsubsection{Logical relationships}
+A logical property applies to a single sentence, while a logical relationship applies to two or more sentences.
+
+\begin{itemize}
+\item Two sentences are equivalent iff they are true at the same set of worlds
+\item Two sentences are mutually exclusive iff they are never true at the same world
+\item Two sentences are exhaustive iff one of them is true at each world
+\end{itemize}
+\vspace{1em}
+
+For implies, $\alpha \Rightarrow \beta$ iff $\omega \models \beta$ whenever $\omega \models \alpha$ for all worlds $\omega$. We can write $\alpha \models \beta$ to say that sentence $\alpha$ implies sentence $\beta$.
+\vspace{1em}
+
+The property $\alpha \models \beta$ and $\alpha \not\models \beta$ holds when the sentence $\alpha$ is complete.
+
+\subsection{Knowledge as a set of possible worlds}
+The set of worlds that satisfy a sentence $\alpha$ are called the models of $\alpha$ and denoted by $Mods(\alpha) = \{\omega : \omega \models \alpha\}$
+
+\end{document}
