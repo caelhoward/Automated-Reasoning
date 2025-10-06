@@ -1,0 +1,160 @@
+\documentclass[11pt]{article}
+
+% Prefix for numedquestion's
+\newcommand{\questiontype}{Question}
+
+
+% Use this if your "written" questions are all under one section
+% For example, if the homework handout has Section 5: Written Questions
+% and all questions are 5.1, 5.2, 5.3, etc. set this to 5
+% Use for 0 no prefix. Redefine as needed per-question.
+\newcommand{\writtensection}{0}
+
+\usepackage{amsmath, amsfonts, amsthm, amssymb}  % Some math symbols
+
+\usepackage{centernot}
+\usepackage{mathtools}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\section{Lecture 2}
+
+Review:\\
+Monotonicity: If $\alpha \models \beta$ then $\alpha \land \gamma \models \beta$.
+
+\begin{proof}
+    Assume $\alpha \models \beta$, then $M(\alpha) \subseteq M(\beta)$. Then $M(\alpha \land \gamma) = M(\alpha) \cap M(\gamma) \subseteq M(\beta)$, so $\alpha \land \gamma \models \beta$.
+\end{proof}
+\vspace{1em}
+
+\textbf{Literal:}  X, $\neg$X\\
+\textbf{Clause:} Disjunction of literals\\
+\textbf{Conjunctive Normal Form (CNF):} A conjunction of clauses. ($X \lor Y) \land (\neg Y \lor Z)$\\
+\begin{enumerate}
+    \item Remove all logical connectives but $\neg, \land, \lor$ using equivalences. (i.e $\alpha \rightarrow \beta \equiv \neg \alpha \lor \beta$)
+    \item Push negations inward using De morgan's laws ($\neg(\alpha \land \beta) \equiv \neg \alpha \lor \neg \beta$ and $\neg(\alpha \lor \beta) \equiv \neg \alpha \land \neg \beta$) and double negation ($\neg(\neg \alpha) \equiv \alpha$).
+    \item Distribute $\lor$ over $\land$ using distributive law ($\alpha \lor (\beta \land \gamma) \equiv (\alpha \lor \beta) \land (\alpha \lor \gamma)$).
+\end{enumerate}
+Example: $\Delta = (A \lor B) \Rightarrow C$
+\begin{align*}
+1. & \Delta \equiv \neg(A \lor B) \lor C\\
+2. & \equiv (\neg A \land \neg B) \lor C\\
+3. & \equiv (\neg A \lor C) \land (\neg B \lor C)
+\end{align*}
+\vspace{1em}
+
+Clausal form is as follows, you represent $(\neg A \lor C) \land (\neg B \lor C)$ as the set of clauses $\{\{\neg A, C\}, \{\neg B, C\}\}$.
+\vspace{1em}
+
+If $\alpha$ is true at world $\omega$, then $\beta$ is true at world $\omega$. Is equivalent to $\omega \models \alpha \Rightarrow \omega \models \beta$.
+
+\subsection{Quantified Boolean Logic}
+\subsubsection{Logical Operators}
+\vspace{1em}
+
+\textbf{Conditioning} (Restriction): $|$
+
+Given a sentence $\Delta$ and variable $P$, condition $\Delta | P$ is the result of replacing every occurence of $P$ in $\Delta$ with true and every occurrence of $\neg P$ in $\Delta$ with false.
+
+Example: $\Delta = A \lor \neg B \lor C \lor \neg D$
+
+$\Delta | B = A \lor C \lor \neg D$
+
+$\Delta | B = A \lor B \lor \neg D$
+
+$\Delta | \neg B = A \lor \text{true} \lor C \lor \neg D$
+
+This is refered to Boole's expansion / Shannon's expansion: $\Delta = P \land (\Delta | P) \lor \neg P \land (\Delta | \neg P)$
+\vspace{1em}
+
+$\Delta = (A \lor B \lor \neg C) \land (\neg A \lor D) \land (B \lor C \lor D)$\\
+$\Delta | C = (A \lor B \lor \text{false}) \land (\neg A \lor D) \land (B \lor \text{true})$\\
+$\Delta | C = \{\{A, B\}, \{\neg A, D\}\}$\\
+$\Delta | A,B,C,D = \{\}$ Means True\\
+$\Delta | A,\neg B,C,D = \{\{\}\}$ Means False
+\vspace{1em}
+
+Empty Clause Means contradiction where empty set means True.
+\vspace{1em}
+
+
+\textbf{Existential Quantification}: $\exists$
+\vspace{1em}
+
+$\exists P \cdot \Delta = \Delta | P \lor \Delta | \neg P$ We have existentially quantified variable P out of $\Delta$.
+
+$\Delta = (A \Rightarrow B) \land (B \Rightarrow C)$
+
+$\Delta = (\neg A \lor B) \land (\neg B \lor C)$
+
+$\Delta | B = C$ 
+
+$\Delta | \neg B = \neg A$
+
+$\exists B \cdot \Delta = C \lor \neg A$
+\vspace{1em}
+
+Forgetting operator / Existential Operator: You are getting rid of a variable while still containing all of the information about the other variables.
+
+If $\alpha$ is a sentence that does not mention the variable $P$, then $\Delta \models \alpha$ iff $\exists P \cdot \Delta \models \alpha$.
+
+Say we have a KB with 1000 variables and we only care about the output based on 10 of them. Then we can existentially quantify out the other 990 variables to get a smaller KB that only mentions the 10 variables we care about.
+\vspace{1em}
+
+\textbf{Universal Quantification}: $\forall P \cdot \Delta = \Delta | P \land \Delta | \neg P$ We have universally quantified variable P out of $\Delta$.
+
+$\exists P \cdot \Delta \models \alpha$ = $\neg(\Delta \models \forall P \cdot \alpha)$ 
+
+\section{Resolution}
+Resolution is referred to as an inference rule, or a rule for deduction. Modeus Ponens is a inference rule that says the following:
+\begin{align}
+\Delta= \{...,\alpha,...,\alpha \Rightarrow \beta\}\\
+\frac{\alpha, \alpha \Rightarrow \beta}{\beta}
+\end{align}
+
+For resolution, input must be a CNF.
+\begin{align*}
+\frac{\alpha \lor X, \beta \lor \neg X}{\alpha \lor \beta}
+\end{align*}
+
+Denominator is a resolvent and we say we resolved on variable X.
+
+\begin{align*}
+\Delta &= (P \Rightarrow R) \land (Q \Rightarrow R) \land (\neg R) \land (P \lor Q)\\
+\end{align*}
+\begin{enumerate}
+    \item $\{\neg P, R\}$
+    \item $\{\neg Q, R\}$
+    \item $\{\neg R\}$
+    \item $\{P, Q\}$
+    \item $\{\neg Q\}$ resolve 2 and 3. Unit resolution step
+    \item $\{P\}$ resolve 3 and 5. Unit resolution step
+    \item $\{R\}$ resolve 1 and 4. Unit resolution step
+    \item $\{\}$ resolve 6 and 7. Contradiction found.
+\end{enumerate}
+
+If resolution is applied to a CNF then it is capable of discoverying a contradiction if one exists.
+\vspace{1em}
+
+\textbf{Refutation Theorem:} $\Delta \models \alpha$ iff $\Delta \land \neg \alpha$ is inconsistent.
+
+Resolution is refutation complete. (When applied to CNF)
+
+\begin{align*}
+\Delta = (A \lor B \Rightarrow C) \land (C \Rightarrow D)\\
+\alpha = \neg D \Rightarrow \neg A\\
+1. \{\neg A, C\}\\
+2. \{\neg B, C\}\\
+3. \{\neg C, D\}\\
+4. \{D, A\}\\
+5. \{\neg D\}\\
+6. \{\neg A, C\} resolve 3 and 5.\\
+7. \{\neg B, C\} resolve 3 and 5.\\
+8. \{C\} resolve 6 and 4.\\
+9. \{C\} resolve 7 and 4.\\
+10. \{\} resolve 8 and 2.
+\end{align*}
+
+\end{document}

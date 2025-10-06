@@ -1,0 +1,68 @@
+\documentclass[11pt]{exam}
+
+% Prefix for numedquestion's
+\newcommand{\questiontype}{Question}
+
+
+% Use this if your "written" questions are all under one section
+% For example, if the homework handout has Section 5: Written Questions
+% and all questions are 5.1, 5.2, 5.3, etc. set this to 5
+% Use for 0 no prefix. Redefine as needed per-question.
+\newcommand{\writtensection}{0}
+
+\usepackage{amsmath, amsfonts, amsthm, amssymb}  % Some math symbols
+
+\usepackage{centernot}
+\usepackage{mathtools}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\section{Homework 1}
+
+\begin{questions}
+\question[8] Show that the following sentences are consistent by identifying a world which satisfies
+each sentence:
+\vspace{1em}
+
+\textbf{a) }$(\neg A \Rightarrow B) \land (A \Rightarrow B)$
+
+\textbf{Solution:} Consider the world $\omega$ where $A$ is true and $B$ is true. We then get $(true \lor true) \land (false \lor true)$ which is true.
+\vspace{1em}
+
+\textbf{b) }$\neg((\neg A \lor B) \Rightarrow (A \land B))$
+
+\textbf{Solution:} First we reduce it to a simpler form: $\neg((A \land \neg B) \lor (A \land B))$ = $(\neg A \lor B) \land (\neg A \lor \neg B)$ = $\neg A$. Therefore, the world $\omega$ where $A$ is false and $B$ is true satisfies the sentence.
+\vspace{1em}
+
+\question[8] Show that the following sentences are valid by showing that each is true at every world:
+\vspace{1em}
+
+\textbf{a)} $(B \land \neg A) \Rightarrow (\neg B \Rightarrow \neg A)$
+
+\textbf{Solution:} First we will reduce it to a simpler form:
+\begin{align*}
+&= (\neg B \lor A) \lor (B \lor \neg A)\\
+&= (\neg B \lor B) \lor (\neg A \lor A)
+\end{align*}
+Since the above is clearly valid, the original sentence must be true at every world.
+\vspace{1em}
+
+\textbf{b)} $((A \Rightarrow B) \land (A \lor \neg C)) \Rightarrow (C \Rightarrow B)$
+
+\textbf{Solution:} Again, we simplify
+\begin{align*}
+&= \neg((\neg A \lor B) \land (A \lor \neg C)) \lor (\neg C \lor B)\\
+&= (A \land B) \lor (\neg A \land C) \lor (\neg C \lor B)\\
+\end{align*}
+We show that the negation of the above is unsatisfiable which implies that the original is valid since $Mod(\overline{\alpha}) = \overline{ Mod(\alpha)}$.
+\begin{align*}
+\neg \alpha &= (\neg A \lor \neg B) \land (A \lor \neg C) \land (C \land \neg B)\\
+&= (\neg B \land \neg C) \land (C \land \neg B)\\
+&= \neg B \land (\neg C \land C)
+\end{align*}
+Since the above is clearly a contradction, the negation of the original sentence is inconsistent. Therefore, since the worlds that model our original sentence are all of those that fail to model the negation of our original sentence, all possible worlds model our original sentence showing that it is valid.
+\end{questions}
+
+\end{document}
