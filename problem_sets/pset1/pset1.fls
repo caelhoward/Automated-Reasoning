@@ -31,6 +31,8 @@ INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/amscls/amsthm.sty
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/amscls/amsthm.sty
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty
+INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty
+INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/oberdiek/centernot.sty
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/oberdiek/centernot.sty
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/mathtools/mathtools.sty

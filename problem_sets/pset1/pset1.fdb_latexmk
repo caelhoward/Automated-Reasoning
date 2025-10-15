@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1759348392.42736 "/Users/caelhoward/repos/Automated-Reasoning/problem_sets/pset1/pset1.tex" "pset1.pdf" "pset1" 1759348392.69561 0
-  "/Users/caelhoward/repos/Automated-Reasoning/problem_sets/pset1/pset1.tex" 1759348391.88568 2695 062b7bf4a41732c2ccbf4a24e16a9d69 ""
+["pdflatex"] 1759938836.70742 "/Users/caelhoward/repos/Automated-Reasoning/problem_sets/pset1/pset1.tex" "pset1.pdf" "pset1" 1759938836.9861 0
+  "/Users/caelhoward/repos/Automated-Reasoning/problem_sets/pset1/pset1.tex" 1759938836.33359 6485 c88cdcb0f8525afccf30b3a31cef5e85 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -40,6 +40,7 @@
   "/usr/local/texlive/2025/texmf-dist/tex/latex/base/article.cls" 1738182759 20144 63d8bacaf52e5abf4db3bc322373e1d4 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/base/ifthen.sty" 1738182759 5525 9dced5929f36b19fa837947f5175b331 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/base/size11.clo" 1738182759 8464 e73911cdcc738e82d6adccd28e654bb1 ""
+  "/usr/local/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty" 1738874546 52272 63d293bc0d496619edb57585740861a2 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1579991033 13886 d1306dcf79a944f6988e688c1785f9ce ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/exam/exam.cls" 1689017597 292471 cf61070d137ac4d18fa1ab3aa514381e ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/graphics-cfg/graphics.cfg" 1465944070 1224 978390e9c2234eab29404bc21b268d1e ""
@@ -58,8 +59,8 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1758624330 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1741450574 3345740 46b66fdb0378f7bf5921b5eabf1762b8 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "pset1.aux" 1759348392.67093 721 d5b487760355290b5d4b03a8a001665b "pdflatex"
-  "pset1.tex" 1759348391.88568 2695 062b7bf4a41732c2ccbf4a24e16a9d69 ""
+  "pset1.aux" 1759938836.95171 1313 5b20b895696ccfc369cdbce35e83c976 "pdflatex"
+  "pset1.tex" 1759938836.33359 6485 c88cdcb0f8525afccf30b3a31cef5e85 ""
   (generated)
   "pset1.aux"
   "pset1.log"

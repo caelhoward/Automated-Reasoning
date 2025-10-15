@@ -10,7 +10,7 @@
 % Use for 0 no prefix. Redefine as needed per-question.
 \newcommand{\writtensection}{0}
 
-\usepackage{amsmath, amsfonts, amsthm, amssymb}  % Some math symbols
+\usepackage{amsmath, amsfonts, amsthm, amssymb, enumitem}  % Some math symbols
 
 \usepackage{centernot}
 \usepackage{mathtools}
@@ -63,6 +63,60 @@ We show that the negation of the above is unsatisfiable which implies that the o
 &= \neg B \land (\neg C \land C)
 \end{align*}
 Since the above is clearly a contradction, the negation of the original sentence is inconsistent. Therefore, since the worlds that model our original sentence are all of those that fail to model the negation of our original sentence, all possible worlds model our original sentence showing that it is valid.
+\newpage
+\question[8] Prove from the definition of Boolean quantifiers $\exists$ and $\forall$ that (a) $\exists P \cdot (\Delta \lor \Gamma)$ is equivalent to $(\exists P \cdot \Delta) \lor (\exists P \cdot \Gamma)$, and (b) $\forall P \cdot (\Delta \land \Gamma)$ is equivalent to $(\forall P \cdot \Delta) \land (\forall P \cdot \Gamma)$. 
+\begin{enumerate}[label=(\alph*)]
+    \item Firstly we existentially eliminate $P$ from $(\Delta \lor \Gamma)$ to get: $$(\Delta \lor \Gamma) | P \lor (\Delta \lor \Gamma) | \lnot P$$Since the $|$ operator replaces every instance of $P$ with true or false, the above equation can be rewritten as:\begin{align*}
+    &= \Delta | P \lor \Gamma | P \lor \Delta | \lnot P \lor \Gamma | \lnot P\\
+    &= (\Delta | P \lor \Delta | \lnot P) \lor (\Gamma | P \lor \Gamma | \lnot P)\\
+    &= (\exists P \cdot \Delta) \lor (\exists P \cdot \Gamma)
+    \end{align*}
+    Demonstrating equivalence between the two sentences.
+    \item We take the negation of $\forall P \cdot (\Delta \land \Gamma)$ to get $\exists P \cdot (\lnot \Delta \lor \lnot \Gamma)$. Then, following part (a) we can derive:
+    $$
+    (\exists P \cdot \lnot \Delta) \lor (\exists P \cdot \lnot \Gamma)
+    $$
+    We can then take the negation of this once again to get a sentence logically equivalent to our original statement leaving us with
+    $$(\forall P \cdot \Delta) \land (\forall P \cdot \Gamma)$$
+    Demonstrating that the two sentences are equivalent.
+\end{enumerate}
+
+\question[8] Convert the following knowledge base into clausal form:
+$$\Delta = \lnot (A \Rightarrow\lnot B), \lnot A \Rightarrow (B \land \lnot C), (\lnot B \Rightarrow C) \lor D$$.
+
+\textbf{Solution:} We follow the steps to achieve the following conversions:
+\begin{enumerate}
+\item $\lnot (\lnot A \lor \lnot B), A \lor (B \land \lnot C), (B \lor C) \lor D$
+\item $(A \land B), (A \lor B) \land (A \lor \lnot C), (B \lor C \lor D)$
+\item $\{\{A\}, \{B\}, \{A,B\}, \{A, \lnot C\}, \{B,C,D\}\}$
+\end{enumerate}
+\vspace{1em}
+
+\question[8] Show that if we have a polynomial-time procedure for model counting, and another for clausal entailment on a knowledge base $\Gamma$, then we have a polynomial-time procedure for testing the equivalence between $\Gamma$ and CNF $\Delta$.
+\vspace{1em}
+
+\textbf{Solution:} To test the equivalence between a knowledge base $\Gamma$ and a CNF $\Delta$, we need to find whether $Mods(\Gamma) = Mods(\Delta)$. Firstly, it is apparent that if the models of $\Gamma$ are equivalent to the models of $\Delta$, then the number of worlds that satisfy each must be the same. Furthermore, if $\Delta \models \Gamma$, then $Mods(\Delta) \subseteq Mods(\Gamma)$. Since
+$$((A \subseteq B) \land (\lvert A \rvert = \lvert B \rvert))\iff A = B$$
+We can apply this and get
+$$((Mods(\Delta) \subseteq Mods(\Gamma)) \land (\lvert Mods(\Delta)\rvert = \lvert Mods(\Gamma) \rvert)) \iff Mods(\Delta) = Mods(\Gamma)$$
+We just need to run both polynomial time algorithms to test if $\Delta \models \Gamma$ and if the size of the two models are the same to determine if the two sentences are equivalent.
+\vspace{1em}
+
+\question[10] Show using resolution that $\lnot D \lor \lnot E$ is entailed by the knowledge base:
+$$\Delta = \lnot A \Rightarrow B, A \Rightarrow \lnot C, D \Rightarrow \lnot B, E \Rightarrow C$$
+\textbf{Solution:} First we convert $\Delta$ into clausal form as follows:
+$$\Delta = \{\{A,B\}, \{\lnot A, \lnot C\}, \{\lnot D, \lnot B\},\{\lnot E, C\}$$
+We resolve it to obtain:
+\begin{enumerate}
+    \item $\{A,B\}$
+    \item $\{\lnot A, \lnot C\}$
+    \item $\{\lnot D, \lnot B\}$
+    \item $\{\lnot E, C\}$
+    \item $\{A, \lnot D\}$ (1 and 3)
+    \item $\{\lnot E, \lnot A\}$ (2 and 4)
+    \item $\{\lnot D, \lnot E\}$ (5 and 6) Desired Clause
+\end{enumerate}
+
 \end{questions}
 
 \end{document}
