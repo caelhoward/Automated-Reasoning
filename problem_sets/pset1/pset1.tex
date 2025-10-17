@@ -14,6 +14,7 @@
 
 \usepackage{centernot}
 \usepackage{mathtools}
+\usepackage{graphicx}
 
 \setlength{\parindent}{0pt}
 
@@ -54,15 +55,15 @@ Since the above is clearly valid, the original sentence must be true at every wo
 \textbf{Solution:} Again, we simplify
 \begin{align*}
 &= \neg((\neg A \lor B) \land (A \lor \neg C)) \lor (\neg C \lor B)\\
-&= (A \land B) \lor (\neg A \land C) \lor (\neg C \lor B)\\
+&= (A \land \lnot B) \lor (\neg A \land C) \lor (\neg C \lor B)\\
 \end{align*}
 We show that the negation of the above is unsatisfiable which implies that the original is valid since $Mod(\overline{\alpha}) = \overline{ Mod(\alpha)}$.
 \begin{align*}
-\neg \alpha &= (\neg A \lor \neg B) \land (A \lor \neg C) \land (C \land \neg B)\\
-&= (\neg B \land \neg C) \land (C \land \neg B)\\
-&= \neg B \land (\neg C \land C)
+\neg \alpha &= (\neg A \lor B) \land (A \lor \neg C) \land C \land \neg B\\
+&= (\neg A \lor B) \land (A \lor \neg C) \land C \land \neg B \land (B \lor \lnot C)\\
+&= (\neg A \lor B) \land (A \lor \neg C) \land C \land \neg B \land (B \lor \neg C) \land \neg C\\
 \end{align*}
-Since the above is clearly a contradction, the negation of the original sentence is inconsistent. Therefore, since the worlds that model our original sentence are all of those that fail to model the negation of our original sentence, all possible worlds model our original sentence showing that it is valid.
+Since the above is clearly a contradction as it contains literals $C$ and $\neg C$, the negation of the original sentence is inconsistent. Therefore, since the worlds that model our original sentence are all of those that fail to model the negation of our original sentence, all possible worlds model our original sentence showing that it is valid.
 \newpage
 \question[8] Prove from the definition of Boolean quantifiers $\exists$ and $\forall$ that (a) $\exists P \cdot (\Delta \lor \Gamma)$ is equivalent to $(\exists P \cdot \Delta) \lor (\exists P \cdot \Gamma)$, and (b) $\forall P \cdot (\Delta \land \Gamma)$ is equivalent to $(\forall P \cdot \Delta) \land (\forall P \cdot \Gamma)$. 
 \begin{enumerate}[label=(\alph*)]
@@ -117,6 +118,51 @@ We resolve it to obtain:
     \item $\{\lnot D, \lnot E\}$ (5 and 6) Desired Clause
 \end{enumerate}
 
+\question[12] Show the termination tree for DPLL when run on the following KB, assuming variables are tested according to the order $A,B,C,D,E$ and true expanded before false.
+$$\Delta = (A \land D) \Rightarrow E, C \Rightarrow D, D \Rightarrow \lnot E, (B \land \lnot C) \Rightarrow D$$
+
+\begin{center}
+\includegraphics[width=0.4\textwidth]{src/q7.png}
+\end{center}
+
+\newpage
+\question[12] Show the trace of DPLL+ on the above KB.
+
+\begin{center}
+\includegraphics[width=0.8\textwidth]{src/q8.png}
+\end{center}
+
+\question[12] Consider the following knowledge base.
+$$\Delta = A \Rightarrow B, \lnot A \Rightarrow (\lnot B \lor C), (B \lor D) \Rightarrow C$$
+Show how you can count the number of models of $\Delta$ using CDPLL and draw the termination tree. Assume that you are expanding variables according to the order $A,B,C,D$ and always expand true before false.
+\begin{center}
+\includegraphics[width=0.8\textwidth]{src/q9.png}
+\end{center}
+\newpage
+
+\question[14] Consisder the following knowledge base
+$$\Delta = P_1 \lor P_2 \lor P_3, P_1 \Rightarrow Q, P_2 \Rightarrow Q, P_3 \Rightarrow Q$$
+\begin{enumerate}[label={\alph*}]
+    \item Convert $\Delta$ into clausal form.$$\Delta = P_1 \lor P_2 \lor P_3, \lnot P_1 \lor Q, \lnot P_2 \lor Q, \lnot P_3 \lor Q$$
+    \item Apply directed resolution to the clausal form using the variable order $P_1,P_2,P_3,Q$
+    \vspace{1em}
+
+        % Table for directed resolution: variables, initial clauses, and new clauses
+        \begin{center}
+    \begin{tabular}{@{}p{1cm} p{5cm} p{7cm}@{}}
+    	\textbf{Var} & \textbf{Initial clauses} & \textbf{New clauses} \\
+    \hline
+    $P_1$ & $\{\lnot P_1 \lor Q\},\ \{P_1 \lor P_2 \lor P_3\}$ & \\
+    $P_2$ & $\{\lnot P_2 \lor Q\}$ & $\{P_2\lor P_3\lor Q\}$\\
+    $P_3$ & $\{\lnot P_3 \lor Q\}$ & $\{P_3\lor Q\}$\\
+    $Q$   &  & $\{Q\}$\\
+    \end{tabular}
+        \end{center}
+\item Construct a decision tree for $\Delta$ and use it to count the number of models of $\Delta$.
+\begin{center}
+        \includegraphics[width=0.4\textwidth]{src/q10.png}
+    \end{center}
+\end{enumerate}
 \end{questions}
 
 \end{document}
